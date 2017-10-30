@@ -1,5 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
+
 const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
   template: './src/index.html',
   filename: 'index.html',
@@ -10,7 +13,7 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve('dist'),
-    filename: 'index_bundle.js'
+    filename: 'bundle.js'
   },
   module: {
     loaders: [
@@ -18,5 +21,7 @@ module.exports = {
       { test: /\.jsx$/, loader: 'babel-loader', exclude: /node_modules/ }
     ]
   },
-  plugins: [HtmlWebpackPluginConfig]
+  plugins: [
+    new CleanWebpackPlugin(['dist']),
+    HtmlWebpackPluginConfig]
 }
