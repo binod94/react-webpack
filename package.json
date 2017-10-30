@@ -7,10 +7,13 @@
   "dependencies": {
     "html-webpack-plugin": "^2.30.1",
     "path": "^0.12.7",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
     "uglifyjs-webpack-plugin": "^1.0.1"
   },
   "scripts": {
-    "start": "webpack-dev-server --open --config webpack.dev.js",
+    "start":"webpack-dev-server",
+    "start-dev": "webpack-dev-server --open --config webpack.dev.js",
     "build": "webpack --config webpack.prod.js"
   },
   "devDependencies": {
