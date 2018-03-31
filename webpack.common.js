@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -15,7 +16,10 @@ module.exports = {
    },
    plugins: [
     new CleanWebpackPlugin(['dist']),
-    HtmlWebpackPluginConfig
+    HtmlWebpackPluginConfig,
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'common'
+    }), 
    ],
    output: {
      filename: '[name].bundle.js',
