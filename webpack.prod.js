@@ -3,16 +3,24 @@
  const common = require('./webpack.common.js');
  const webpack = require('webpack');
 
- module.exports = merge(common, {
-  devtool: 'source-map',
-   plugins: [
+module.exports = merge(common, {
+  plugins: [
     new UglifyJSPlugin({
-             sourceMap: true
-           }),
-           new webpack.DefinePlugin({
-                   'process.env': {
-                   'NODE_ENV': JSON.stringify('production')
-                   }
-                 })
-   ]
- });
+      uglifyOptions: {
+        compress: {
+          warnings: false,
+          drop_console: true,
+        },
+        output: {
+          comments: false
+        },
+      }
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
+    new webpack.optimize.AggressiveMergingPlugin(),
+  ]
+});
